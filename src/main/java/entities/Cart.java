@@ -1,3 +1,7 @@
+package entities;
+
+import entities.CartItem;
+import entities.Customer;
 import entities.StatusType;
 import jakarta.persistence.*;
 import lombok.Data;
