@@ -1,4 +1,8 @@
 package entities;
 
-public class StatusType {
+public enum StatusType {
+    PENDING,
+    ORDERED,
+    CANCELLED
 }
+
