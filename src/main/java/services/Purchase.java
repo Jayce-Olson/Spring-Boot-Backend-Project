@@ -4,7 +4,6 @@ import entities.Customer;
 import entities.Cart;
 import entities.CartItem;
 import lombok.Data;
-
 import java.util.Set;
 
 @Data
@@ -13,6 +12,7 @@ public class Purchase {
     private Cart cart;
     private Set<CartItem> cartItems;
 }
+
 
 
 /* This comment is just for me to understand the neccesity of this file.
