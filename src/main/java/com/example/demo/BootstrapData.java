@@ -1,10 +1,9 @@
-package BootstrapData;
-import dao.CustomerRepository;
-import dao.DivisionRepository;
-import entities.Customer;
+package com.example.demo;
+import com.example.demo.dao.CustomerRepository;
+import com.example.demo.dao.DivisionRepository;
+import com.example.demo.entities.Customer;
 import jakarta.annotation.PostConstruct;
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import java.util.Date;
 @Data
@@ -16,7 +15,7 @@ public class BootstrapData {
 
     @PostConstruct
     public void loadInitialData() {
-        if (customerRepository.count() == 0) { // Only load if no customers exist
+        if (customerRepository.count() == 1) { // Only load if no customers exist
 
             Customer customer1 = new Customer(
                     null,
@@ -89,9 +88,9 @@ public class BootstrapData {
             customerRepository.save(customer4);
             customerRepository.save(customer5);
 
-            System.out.println("Sample customers added!");
+            System.out.println("Sample added");
         } else {
-            System.out.println("Sample customers already exist!");
+            System.out.println("No need for sample Sample");
         }
     }
 }

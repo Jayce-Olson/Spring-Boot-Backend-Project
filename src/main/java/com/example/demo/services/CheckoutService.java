@@ -1,4 +1,4 @@
-package services;
+package com.example.demo.services;
 
 public interface CheckoutService {
     PurchaseResponse placeOrder(Purchase purchase);// Takes a purchase and understandably must return a PurchaseResponse object

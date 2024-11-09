@@ -1,8 +1,5 @@
-package entities;
+package com.example.demo.entities;
 
-import entities.CartItem;
-import entities.Customer;
-import entities.StatusType;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,6 +17,7 @@ public class Cart {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "cart_id")
     private Long id;
 
     @Column(name = "order_tracking_number", length = 255)

@@ -1,11 +1,11 @@
-package services;
+package com.example.demo.services;
 
-import dao.CartItemRepository;
-import dao.CartRepository;
-import dao.CustomerRepository;
-import entities.Cart;
-import entities.CartItem;
-import entities.Customer;
+import com.example.demo.dao.CartItemRepository;
+import com.example.demo.dao.CartRepository;
+import com.example.demo.dao.CustomerRepository;
+import com.example.demo.entities.Cart;
+import com.example.demo.entities.CartItem;
+import com.example.demo.entities.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

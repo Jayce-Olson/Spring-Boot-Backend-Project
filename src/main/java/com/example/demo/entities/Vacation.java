@@ -1,4 +1,4 @@
-package entities;
+package com.example.demo.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -13,18 +13,19 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Excursion {
+@Table(name = "vacations")
+public class Vacation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "vacation_id")
     private Long id;
 
-    @Column(name = "excursion_title")
-    private String excursionTitle;
+    @Column(name = "vacation_title")
+    private String vacationTitle;
 
-    @Column(name = "excursion_price")
-    private BigDecimal excursionPrice;
+    @Column(name = "description")
+    private String description;
 
     @Column(name = "image_url")
     private String imageUrl;
@@ -35,10 +36,9 @@ public class Excursion {
     @Column(name = "last_update")
     private Date lastUpdate;
 
-    @ManyToOne
-    @JoinColumn(name = "vacation_id")
-    private Vacation vacation;
-
-    @ManyToMany(mappedBy = "excursions")
+    @OneToMany(mappedBy = "vacation")
     private Set<CartItem> cartItems;
+
+    @OneToMany(mappedBy = "vacation", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Excursion> excursions;
 }

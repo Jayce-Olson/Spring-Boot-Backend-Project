@@ -1,4 +1,4 @@
-package entities;
+package com.example.demo.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -12,15 +12,16 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Division {
+@Table(name = "countries")
+public class Country {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "country_id")
     private Long id;
 
-    @Column(name = "division_name")
-    private String divisionName;
+    @Column(name = "country")
+    private String countryName;
 
     @Column(name = "create_date")
     private Date createDate;
@@ -28,11 +29,6 @@ public class Division {
     @Column(name = "last_update")
     private Date lastUpdate;
 
-    @ManyToOne
-    @JoinColumn(name = "country_id")
-    private Country country;
-
-    @OneToMany(mappedBy = "division")
-    private Set<Customer> customers;
+    @OneToMany(mappedBy = "country")
+    private Set<Division> divisions;
 }
-

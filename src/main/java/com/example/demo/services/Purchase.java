@@ -1,8 +1,8 @@
-package services;
+package com.example.demo.services;
 
-import entities.Customer;
-import entities.Cart;
-import entities.CartItem;
+import com.example.demo.entities.Customer;
+import com.example.demo.entities.Cart;
+import com.example.demo.entities.CartItem;
 import lombok.Data;
 import java.util.Set;
 

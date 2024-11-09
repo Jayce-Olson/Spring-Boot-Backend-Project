@@ -1,4 +1,4 @@
-package entities;
+package com.example.demo.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -12,16 +12,17 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "customers")
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "customer_id")
     private Long id;
 
-    @Column(name = "first_name", nullable = false)
+    @Column(name = "customer_first_name", nullable = false)
     private String firstName;
 
-    @Column(name = "last_name", nullable = false)
+    @Column(name = "customer_last_name", nullable = false)
     private String lastName;
 
     @Column(name = "address", nullable = false)
