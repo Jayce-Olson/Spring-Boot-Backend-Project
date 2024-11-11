@@ -1,37 +1,30 @@
 package com.example.demo.config;
 
-// import edu.wgu.d288_backend.entities.*;
 import com.example.demo.entities.*;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
  * <h1>RestDataConfig</h1>
- * per course instructions include this code to configure the rest api end-points exposed for the project
- * TODO restrict non-used rest api end points
- * <p>
+ * Configures the REST API endpoints exposed for the project.
  *
  * @author WGU Course Materials
  * @version 0.1
  * @since 2023-02-27
  */
 @Configuration
-public class RestDataConfig implements RepositoryRestConfigurer {
+public class RestDataConfig implements RepositoryRestConfigurer, WebMvcConfigurer {
 
     /**
-     * This method exposes standard rest api end points for the following classes:
-     * Country
-     * Customer
-     * Division
-     * Excursion
-     * Vacation
-     * <p>
-     * Set page configuration parameters
+     * Configures CORS and exposes entity IDs.
      *
-     * @param config
-     * @param cors
+     * @param config Repository configuration for exposed endpoints.
+     * @param cors   CORS registry for allowed origins.
      */
     @Override
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config, CorsRegistry cors) {
@@ -42,6 +35,11 @@ public class RestDataConfig implements RepositoryRestConfigurer {
         config.exposeIdsFor(Vacation.class);
         config.setDefaultPageSize(Integer.MAX_VALUE);
         config.setMaxPageSize(Integer.MAX_VALUE);
+        cors.addMapping("/**").allowedOrigins("http://localhost:4200");
+    }
+    @Override // I had to add this because the frontend has a url path with a trailing slash that was causing errors. It ended up being a @Data annotation problem, but I decided to leave this just in case
+    public void addViewControllers(ViewControllerRegistry registry) {
+        registry.addRedirectViewController("/api/excursions/", "/api/excursions");
     }
 }
 

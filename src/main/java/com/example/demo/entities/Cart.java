@@ -1,18 +1,19 @@
 package com.example.demo.entities;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
+import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "carts")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+@Getter
+@Setter
 public class Cart {
 
     @Id
@@ -20,32 +21,37 @@ public class Cart {
     @Column(name = "cart_id")
     private Long id;
 
-    @Column(name = "order_tracking_number", length = 255)
+    @Column(name = "order_tracking_number")
     private String orderTrackingNumber;
 
-    @Column(name = "package_price", precision = 10, scale = 2)
+    @Column(name = "package_price")
     private BigDecimal packagePrice;
-
-    @Column(name = "party_size", nullable = false)
-    private int partySize;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "status", nullable = false)
-    private StatusType status;
-
-    @Column(name = "create_date", nullable = false, updatable = false)
-    private LocalDateTime createDate;
-
-    @Column(name = "last_update", nullable = false)
-    private LocalDateTime lastUpdate;
-
 
     @ManyToOne
     @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
 
+    @Column(name = "party_size")
+    private int partySize;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
+    private StatusType status;
+
+    @CreationTimestamp
+    @Column(name = "create_date")
+    private Date createDate;
+
+    @UpdateTimestamp
+    @Column(name = "last_update")
+    private Date lastUpdate;
 
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<CartItem> cartItems;
+    private Set<CartItem> cartItems = new HashSet<>();
 
+    public void addCartItem(CartItem cartItem) {
+        cartItems.add(cartItem);
+        cartItem.setCart(this);
+    }
 }
+
