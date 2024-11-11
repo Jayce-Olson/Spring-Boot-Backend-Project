@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+
 import java.util.Date;
 import java.util.Set;
 
@@ -35,7 +36,7 @@ public class CartItem {
     private Cart cart;
 
     @CreationTimestamp
-    @Column(name = "create_date")
+    @Column(name = "create_date", updatable = false)
     private Date createDate;
 
     @UpdateTimestamp

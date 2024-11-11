@@ -47,10 +47,10 @@ public class Cart {
     private Date lastUpdate;
 
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<CartItem> cartItems = new HashSet<>();
+    private Set<CartItem> cartItem = new HashSet<>();
 
     public void addCartItem(CartItem cartItem) {
-        cartItems.add(cartItem);
+        this.cartItem.add(cartItem);
         cartItem.setCart(this);
     }
 }
