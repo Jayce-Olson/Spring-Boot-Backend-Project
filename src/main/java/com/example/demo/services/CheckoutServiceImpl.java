@@ -17,7 +17,10 @@ import java.util.UUID;
 @Service
 public class CheckoutServiceImpl implements CheckoutService {
 
+    @Autowired
     private final CartRepository cartRepository;
+
+    @Autowired
     private final CartItemRepository cartItemRepository;
 
     @Autowired
@@ -38,7 +41,6 @@ public class CheckoutServiceImpl implements CheckoutService {
         cart.setOrderTrackingNumber(orderTrackingNumber);
         cart.setStatus(StatusType.ordered);
         cart.setPackagePrice(new BigDecimal(0)); // Setting the value to zero now so there won't be an error calculatiing later from null value
-        cart.setPartySize(5);
 
         cartItems.forEach(cartItem -> { // Iterate through Items to add to cart
             cart.addCartItem(cartItem);
