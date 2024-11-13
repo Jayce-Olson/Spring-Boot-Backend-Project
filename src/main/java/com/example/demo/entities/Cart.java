@@ -24,7 +24,7 @@ public class Cart {
     @Column(name = "order_tracking_number")
     private String orderTrackingNumber;
 
-    @Column(name = "package_price")
+    @Column(name = "package_price", nullable=false)
     private BigDecimal packagePrice;
 
     @ManyToOne
